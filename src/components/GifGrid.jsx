@@ -15,7 +15,7 @@ export const GifGrid = ({category}) => {
         <div className='card-grid'>
             {images.map(image =>{
                 return(                    
-                    <GifCard key={image.id} image={image}/>
+                    <GifCard title = {image.title} url = {image.url} key={image.id} image={image}/>
                 );
             })}
 

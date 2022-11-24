@@ -1,10 +1,16 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types'; 
 
-export const GifCard = ({image}) => {
+export const GifCard = ({title, url, image, id}) => {
 
   return (
-    <div className='card' key={image.id}>{image.title}
-        <img src={image.url} alt={image.title} />
+    <div className='card' key={id}>{title}
+        <img src={url} alt={title} />
     </div>
   )
 }
+
+GifCard.propTypes = {
+  title : PropTypes.string.isRequired,
+  url : PropTypes.string.isRequired
+};
