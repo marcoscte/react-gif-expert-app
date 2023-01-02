@@ -20,8 +20,9 @@ describe('Pruebas de componenete AddCategory', () => {
 
      test('debe llamar onNewCategpry si el input tiene un valor', () => { 
         const inputValue = 'saitama';
+        const onNewCategory = jest.fn(); //jest mock
 
-        render(<AddCategory onNewCategory={()=>{}}/>);
+        render(<AddCategory onNewCategory={onNewCategory}/>);
 
         const input = screen.getByRole('textbox');
         const form = screen.getByRole('form');
@@ -33,8 +34,19 @@ describe('Pruebas de componenete AddCategory', () => {
         expect(input.value).toBe('');
 
 
+        expect(onNewCategory ).toHaveBeenCalledTimes(1);
+
+        expect(onNewCategory).toHaveBeenCalledWith(inputValue);
 
 
 
-      })
+      });
+
+      test('no debe llamar el onNewCategory si el input esta vacio', () => { 
+        const onNewCategory = jest.fn(); //jest mock
+        render(<AddCategory onNewCategory={onNewCategory}/>);
+        const form = screen.getByRole('form');
+        fireEvent.submit(form);
+        expect(onNewCategory ).toHaveBeenCalledTimes(0);
+       });
  })
